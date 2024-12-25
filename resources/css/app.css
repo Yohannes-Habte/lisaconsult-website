@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1 {
+    font-size: 5rem;
+    color: blue;
+    text-align: center;
+    text-transform: uppercase;
+}
