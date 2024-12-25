@@ -7,8 +7,13 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
-    return view('home');
+    // Retrieve up to 6 products from the database
+    $products = Product::take(6)->get();
+
+    // Pass products to the 'home' view
+    return view('home', ["products" => $products]);
 })->name('home');
+
 
 
 // Show the registration form
@@ -39,6 +44,17 @@ Route::get('/products', function () {
     return view('products', ["products" => $products]);  // This should be the page showing all products
 })->name('products.index');
 
+
+
+
+// Public route to show 6 products only using limit
+/** 
+Route::get('/products', function () {
+    $products = Product::limit(6)->get();
+    return view('products', ["products" => $products]);
+})->name('products.index');
+
+ */
 
 // Public route to show all products of a specific user who is logged in
 Route::get('/userProducts', function () {
